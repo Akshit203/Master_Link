@@ -2,7 +2,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ConnectFourGame {
+public class index1 {
+    
     private char[][] board;
     private String currentPlayer;
     private int numRows;
@@ -13,7 +14,7 @@ public class ConnectFourGame {
     private String player1Name;
     private String player2Name;
 
-    public ConnectFourGame(int numRows, int numCols) {
+    public index1(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
         board = new char[numRows][numCols];
@@ -169,7 +170,7 @@ public class ConnectFourGame {
         System.out.print("Enter number of columns: ");
         int cols = scanner.nextInt();
 
-        ConnectFourGame game = new ConnectFourGame(rows, cols);
+        index1 game = new index1(rows, cols);
         boolean loggedInX = false;
         boolean loggedInO = false;
 
@@ -183,6 +184,7 @@ public class ConnectFourGame {
 
             switch (choice) {
                 case 1:
+                    // Registration
                     System.out.print("Enter username for Player 1: ");
                     String usernameX = scanner.next();
                     System.out.print("Enter password: ");
@@ -194,7 +196,9 @@ public class ConnectFourGame {
                     String passwordO = scanner.next();
                     game.registerUser(usernameO, passwordO);
                     break;
+
                 case 2:
+                    // Login
                     System.out.print("Enter username for Player 1: ");
                     String username1 = scanner.next();
                     System.out.print("Enter password: ");
@@ -222,4 +226,26 @@ public class ConnectFourGame {
                         }
                     }
                     break;
+
                 case 3:
+                    // Start Game
+                    if (loggedInX && loggedInO) {
+                        game.currentPlayer = game.player1Name; // Set player 1 as the current player
+                        game.playGame(scanner);
+                    } else {
+                        System.out.println("Please log in with valid credentials for both players.");
+                    }
+                    break;
+
+                case 4:
+                    // Exit
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
